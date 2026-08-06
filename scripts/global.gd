@@ -6,7 +6,6 @@ var score = 0
 var chosen_ship = 1
 var mute = false
 
-
 func reset_values():
 	game_over = false
 	game_on = false
@@ -20,7 +19,7 @@ func _process(delta):
 	else:
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), 0)
 		
-	
+
 	
 	
 	
