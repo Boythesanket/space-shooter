@@ -7,8 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://d0fad4ipu0d8n" path="res://art/kenney_space-shooter-remastered/PNG/playerShip2_blue.png" id="4_tefeu"]
 [ext_resource type="Texture2D" uid="uid://heiyi8ixa8ka" path="res://art/kenney_ui-pack/PNG/Blue/Default/button_rectangle_border.png" id="5_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://dam0uautw70y5" path="res://art/kenney_space-shooter-remastered/PNG/playerShip1_blue.png" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://cxqle1mb500fx" path="res://scripts/shipUI.gd" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://bxkgdqr44450m" path="res://art/kenney_space-shooter-remastered/PNG/playerShip3_blue.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://rm6j56ey5tm5" path="res://art/kenney_ui-pack/PNG/Red/Default/button_rectangle_border.png" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://cog5ixijvv7xa" path="res://components/laser_one.tscn" id="8_trceg"]
+[ext_resource type="PackedScene" uid="uid://ba3737kiw5nr3" path="res://components/laser_two.tscn" id="10_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cp5vk5c52treg" path="res://components/laser_three.tscn" id="12_jkv2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
 texture = ExtResource("1_o5qli")
@@ -212,6 +216,14 @@ texture_filter = 1
 position = Vector2(363, 465)
 scale = Vector2(2, 2)
 texture = ExtResource("4_tefeu")
+script = ExtResource("7_choun")
+laser = ExtResource("8_trceg")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/ships/shipOne" unique_id=273735847]
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/ships/shipOne" unique_id=1695639361]
+wait_time = 0.6
+autostart = true
 
 [node name="shipTwo" type="Sprite2D" parent="ui/CanvasLayer/chooseScreen/ships" unique_id=797469415]
 visible = false
@@ -219,12 +231,30 @@ texture_filter = 1
 position = Vector2(363, 465)
 scale = Vector2(2, 2)
 texture = ExtResource("6_o6xl0")
+script = ExtResource("7_choun")
+laser = ExtResource("10_a8y0u")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/ships/shipTwo" unique_id=1981588881]
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/ships/shipTwo" unique_id=12674316]
+wait_time = 1.2
+autostart = true
 
 [node name="shipThree" type="Sprite2D" parent="ui/CanvasLayer/chooseScreen/ships" unique_id=1861327253]
+visible = false
 texture_filter = 1
 position = Vector2(363, 465)
 scale = Vector2(2, 2)
 texture = ExtResource("7_tipki")
+script = ExtResource("7_choun")
+laser = ExtResource("12_jkv2x")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/ships/shipThree" unique_id=1070234587]
+position = Vector2(0.5, -55.5)
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/ships/shipThree" unique_id=810525658]
+wait_time = 1.5
+autostart = true
 
 [node name="ButtonChoose" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=947412746]
 position = Vector2(212, 944)
@@ -440,6 +470,9 @@ theme_type_variation = &"FlatButton"
 theme_override_styles/focus = SubResource("StyleBoxFlat_tbgi4")
 
 [connection signal="pressed" from="ui/CanvasLayer/startScreen/ButtonPlay/ButtonPlay" to="ui" method="_on_button_play_pressed"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/ships/shipOne/Timer" to="ui/CanvasLayer/chooseScreen/ships/shipOne" method="_on_timer_timeout"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/ships/shipTwo/Timer" to="ui/CanvasLayer/chooseScreen/ships/shipTwo" method="_on_timer_timeout"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/ships/shipThree/Timer" to="ui/CanvasLayer/chooseScreen/ships/shipThree" method="_on_timer_timeout"]
 [connection signal="pressed" from="ui/CanvasLayer/chooseScreen/ButtonChoose/ButtonChose" to="ui" method="_on_button_chose_pressed"]
 [connection signal="pressed" from="ui/CanvasLayer/chooseScreen/ButtonShipOne/ButtonShipOne" to="ui" method="_on_button_ship_one_pressed"]
 [connection signal="pressed" from="ui/CanvasLayer/chooseScreen/ButtonShipTwo/ButtonShipTwo" to="ui" method="_on_button_ship_two_pressed"]
