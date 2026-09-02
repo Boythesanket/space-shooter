@@ -49,7 +49,6 @@ func _on_button_mute_pressed() -> void:
 func _on_button_menu_pressed() -> void:
 	global.reset_values()
 	get_tree().reload_current_scene()
-	
 
 func _process(delta: float):
 	if global.game_over:
