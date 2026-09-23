@@ -5,4 +5,5 @@ extends Sprite2D
 func _on_timer_timeout() -> void:
 	var new_laser = laser.instantiate()
 	add_child(new_laser)
+ print("hello world")
 	new_laser.global_position = $point.global_position
