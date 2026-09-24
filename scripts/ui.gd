@@ -4,6 +4,7 @@ extends Node2D
 func _on_button_play_pressed() -> void:
 	$CanvasLayer/startScreen.visible = false
 	$CanvasLayer/chooseScreen.visible = true
+ print("hello world")
 
 
 func _on_button_ship_one_pressed() -> void:
